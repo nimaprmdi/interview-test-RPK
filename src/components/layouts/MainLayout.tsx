@@ -1,6 +1,6 @@
 import { FC } from "react";
-import Navbar from "../../common/Navbar";
-import Outlet from "../../common/Outlet";
+import Navbar from "../common/navbar/Navbar";
+import Outlet from "../common/Outlet";
 
 const MainLayout: FC = (): JSX.Element => {
   return (

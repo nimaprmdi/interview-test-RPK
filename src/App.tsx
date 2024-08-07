@@ -3,6 +3,8 @@ import { RouterProvider, Route, createBrowserRouter, createRoutesFromElements } 
 import MainLayout from "./components/layouts/MainLayout";
 import HomePage from "./pages/HomePage";
 
+//
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />}>
@@ -13,9 +15,9 @@ const router = createBrowserRouter(
 
 function App() {
   return (
-    <>
+    <div>
       <RouterProvider router={router} />
-    </>
+    </div>
   );
 }
 
