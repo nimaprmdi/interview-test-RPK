@@ -15,7 +15,7 @@ const initialData: IKanbanState = {
     },
     "column-2": {
       id: "column-2",
-      title: "Doing",
+      title: "In Progress",
       color: "border-yellow-500",
       taskIds: [],
     },
