@@ -2,12 +2,12 @@ import { FC, MouseEventHandler } from "react";
 
 // @todo make generic
 interface ButtonProps {
-  handler: MouseEventHandler<HTMLButtonElement>;
+  onClick: MouseEventHandler<HTMLButtonElement>;
   children: string | JSX.Element;
   id?: string;
 }
 
-const Button: FC<ButtonProps> = ({ id, handler, children }): JSX.Element => {
+const Button: FC<ButtonProps> = ({ id, onClick: handler, children }): JSX.Element => {
   return (
     <button
       id={id || String(Math.floor(Math.random() * 500000))}

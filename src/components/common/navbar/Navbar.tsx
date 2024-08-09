@@ -5,7 +5,7 @@ import NavList from "./NavList";
 const Navbar: FC = (): JSX.Element => {
   return (
     <nav className="w-full lg:w-2/12 lg:min-h-screen bg-gray-400 relative">
-      <div className="lg:w-2/12 h-full fixed bg-gray-400 px-3 pt-5">
+      <div className="w-full lg:w-2/12 h-full lg:fixed bg-gray-400 px-3 pt-5">
         <NavbarActions />
         <NavList />
       </div>

@@ -1,44 +1,24 @@
 import { FC, useRef, useState } from "react";
-import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { IKanbanState, ITask } from "../../types/kanban";
+import { toast } from "react-toastify";
+import { IKanbanState } from "../../types/kanban";
 import { AddTodoModalRef } from "../../types/todo";
-import { addTodo, createSlug, onDragEndCurrentCol, onDragEndOutSideCol } from "../../utils/helpers";
+import { addTodo, createSlug } from "../../utils/helpers";
 import initialData from "../../utils/kanban-initial-data";
 import Button from "../elements/Button";
 import AddTodoModal from "./AddTodoModal";
-import Column from "./Column";
-import { toast } from "react-toastify";
+import TodoList from "./TodoList";
 
 const Todos: FC = (): JSX.Element => {
   const [kanbanState, setKanbanState] = useState<IKanbanState>(initialData);
   const childRef = useRef<AddTodoModalRef>(null);
 
-  const onDragEnd = (result: DropResult) => {
-    const { destination, source } = result;
-
-    if (!destination) return;
-
-    if (destination.droppableId === source.droppableId && destination.index === source.index) return;
-
-    const start = kanbanState.columns[source.droppableId];
-    const finish = kanbanState.columns[destination.droppableId];
-
-    // If dragged item was on the source
-    if (start === finish) {
-      onDragEndCurrentCol(kanbanState, result, setKanbanState);
-    } else {
-      onDragEndOutSideCol(kanbanState, result, setKanbanState);
-    }
-  };
-
   const handleAddTodo = () => {
     const todosClone: IKanbanState = { ...JSON.parse(JSON.stringify(kanbanState)) };
     if (childRef.current && childRef.current.getState().title) {
-      // created a unique slug
-      const taskSlug = createSlug(childRef.current.getState().title);
-      const foundResult = Object.keys(todosClone.tasks).findIndex((item) => item === taskSlug);
+      const taskSlug = createSlug(childRef.current.getState().title); // created a unique slug
+      const foundResult = Object.keys(todosClone.tasks).findIndex((item) => item === taskSlug); // find a item
 
-      foundResult === -1 ? addTodo(todosClone, childRef, setKanbanState) : toast.error("Please Enter another name");
+      foundResult === -1 ? addTodo(todosClone, childRef, setKanbanState) : toast.error("Please Enter another name"); // the action
     }
 
     // Restore the input
@@ -53,22 +33,11 @@ const Todos: FC = (): JSX.Element => {
     <section className="w-full">
       <h3 className="w-full text-3xl font-bold mt-4">Your Tasks</h3>
 
-      <Button id="add-todo" handler={handleOpenModal}>
+      <Button id="add-todo" onClick={handleOpenModal}>
         Add Todo
       </Button>
 
-      <DragDropContext onDragEnd={onDragEnd}>
-        <section className="w-full flex flex-wrap justify-center lg:justify-start mt-4">
-          {kanbanState.columnOrder.map((columnId) => {
-            const column = kanbanState.columns[columnId];
-            const tasks: ITask[] = column.taskIds.map((taskId) => kanbanState.tasks[taskId]);
-
-            return (
-              <Column key={column.id} title={column.title} id={column.id} tasks={tasks} className={column.color} />
-            );
-          })}
-        </section>
-      </DragDropContext>
+      <TodoList kanbanState={kanbanState} setKanbanState={setKanbanState} />
 
       <AddTodoModal handleButton={handleAddTodo} ref={childRef} />
     </section>

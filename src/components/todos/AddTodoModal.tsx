@@ -38,7 +38,7 @@ const AddTodoModal = forwardRef<AddTodoModalRef, AddTodoModalProps>(({ handleBut
             onChange={(e) => setTodoForm({ ...todoForm, title: e.currentTarget.value })}
           />
 
-          <Button id="add-todo-btn-modal" handler={handleButton}>
+          <Button id="add-todo-btn-modal" onClick={handleButton}>
             Add New Todo
           </Button>
         </div>
