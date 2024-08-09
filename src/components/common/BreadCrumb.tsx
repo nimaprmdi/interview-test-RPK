@@ -5,9 +5,7 @@ export const BreadCrumb: FC = (): JSX.Element => {
   return (
     <section className="w-full flex justify-between">
       <div className="routes flex items-center">
-        <span className="me-1">Home / </span>
-        <span className="me-1">Home / </span>
-        <span className="me-1">Home </span>
+        <span className="me-1">Todo App</span>
       </div>
 
       <div className="icons flex justify-between gap-5 items-center py-3">

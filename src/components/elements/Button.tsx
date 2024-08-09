@@ -4,11 +4,16 @@ import { FC, MouseEventHandler } from "react";
 interface ButtonProps {
   handler: MouseEventHandler<HTMLButtonElement>;
   children: string | JSX.Element;
+  id?: string;
 }
 
-const Button: FC<ButtonProps> = ({ handler, children }): JSX.Element => {
+const Button: FC<ButtonProps> = ({ id, handler, children }): JSX.Element => {
   return (
-    <button onClick={handler} className="bg-blue-500 my-3 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+    <button
+      id={id || String(Math.floor(Math.random() * 500000))}
+      onClick={handler}
+      className="bg-blue-500 my-3 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+    >
       {children}
     </button>
   );

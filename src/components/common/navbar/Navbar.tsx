@@ -4,9 +4,11 @@ import NavList from "./NavList";
 
 const Navbar: FC = (): JSX.Element => {
   return (
-    <nav className="w-full h-16 lg:w-2/12 lg:h-screen px-3 pt-5">
-      <NavbarActions />
-      <NavList />
+    <nav className="w-full lg:w-2/12 lg:min-h-screen bg-gray-400 relative">
+      <div className="lg:w-2/12 h-full fixed bg-gray-400 px-3 pt-5">
+        <NavbarActions />
+        <NavList />
+      </div>
     </nav>
   );
 };

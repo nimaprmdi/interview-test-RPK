@@ -3,9 +3,8 @@ import Todos from "../components/todos/Todos";
 
 const HomePage = () => {
   return (
-    <section className="w-full h-screen bg-gray-400 px-4 pt-2">
+    <section className="w-full min-h-screen bg-gray-200 px-4 pt-2">
       <BreadCrumb />
-
       <Todos />
     </section>
   );

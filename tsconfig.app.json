@@ -16,12 +16,17 @@
     "moduleDetection": "force",
     "noEmit": true,
     "jsx": "react-jsx",
+    "declaration": true,
+    "esModuleInterop": true,
 
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    /* need for vtest*/
+    "types": ["@testing-library/jest-dom", "vitest/globals"]
   },
-  "include": ["src"]
+  "include": ["src", "src/test/setup.ts", "**/*.ts", "**/*.tsx", "./vitest.setup.ts"]
 }

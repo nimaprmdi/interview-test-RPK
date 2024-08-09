@@ -1,5 +1,8 @@
 {
   "files": [],
+  "compilerOptions": {
+    "jsxFactory": "React"
+  },
   "references": [
     {
       "path": "./tsconfig.app.json"
